@@ -1,4 +1,5 @@
 <template>
+
 <div>
    <title>Cardiomyopathy</title>
  
@@ -17,11 +18,13 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <!--link to each view through routing -->
-        <li><router-link to="/">HOME</router-link></li>
+        <li><router-link to="/home">HOME</router-link></li>
         <li><router-link to="/about">ABOUT</router-link></li>
         <li><router-link to="/graph">GRAPH</router-link></li>
         <li><router-link to="/contact">CONTACT</router-link></li>
         <li><router-link to="/login">Login/Register</router-link></li>
+        <li> <a class='click'  @click="logout">Logout</a></li>
+        
       </ul>
     </div>
   </div>
@@ -32,7 +35,39 @@
 
 <router-view/>
 </div>
+
 </template>
+
+<script>
+import {ref} from "vue";
+import { firebaseAuthentication } from "@/firebase/database";
+import { useRouter } from "vue-router";
+
+export default {
+
+  setup(){
+
+    const user = ref(firebaseAuthentication.currentUser);
+
+    const router = useRouter();
+    function logout(){
+      firebaseAuthentication.signOut().then(
+        ()=> {
+          user.value= null;
+          router.push("login");// Redirects you to login page 
+        }
+      );
+    }
+    return {user, logout}
+
+  }
+
+  
+  
+}
+</script>
+
+
 
 <style>
 body {

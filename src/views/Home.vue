@@ -1,14 +1,16 @@
 <template>
   <div class="home_page">
-  <div class="jumbotron text-left">
-  <h1>Welcome to Homepage </h1> 
-  <p>Input your expermntal data</p> 
-</div>
+  <div class="jumbotron text-left"> 
+  <h1> Welcome to Homepage </h1>
+  <h2 v-if="user">Hi, {{user.displayName}}</h2> 
 
-  
+    
+  <p>Input your expermntal data</p> 
+    
+</div>  
   <div class="jumbotron2 text-center">
-  <h1>Serch keywords </h1> 
-  <p>Please selsct one keyword to search</p> 
+  <h1>Saerch keywords </h1> 
+  <p>Please select one keyword to search</p> 
   <div class= "drop">
   <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
   <option selected>Open this select menu</option>
@@ -24,13 +26,40 @@
 
 <script>
 // @ is an alias to /src
+import {ref} from "vue";
+import { firebaseFireStore, firebaseAuthentication } from "@/firebase/database";
+
 
 
 export default {
   name: 'Home',
   components: {
     
+  },
+
+  setup(){
+
+    const user = ref(firebaseAuthentication.currentUser);
+   
+
+    firebaseFireStore
+    .collection("users")
+    .doc("jlPv0nW8LxObHkzg7Gug")
+    .get()
+    .then((snapshot) => {
+      console.log(snapshot.data().name);
+    });
+    
+  
+    firebaseAuthentication.onAuthStateChanged(user => {
+      user.value = user;
+    });
+
+
+    return {user};
   }
+
+
 }
 
 </script>

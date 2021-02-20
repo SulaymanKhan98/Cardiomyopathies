@@ -4,6 +4,9 @@ import about from '../views/About.vue'
 import Graph from '../views/Graph.vue'
 import Login from '../views/Login.vue'
 import Contact from '../views/Contact.vue'
+import Register from '../views/Register.vue'
+import Forgot from '../views/Forgot.vue'
+
 
 const routes = [
   {
@@ -34,6 +37,21 @@ const routes = [
     path: '/contact',
     name: 'contact',
     component: Contact
+  },
+
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
+  },
+  {
+    path: '/forgot',
+    name: 'Forgot',
+    component: Forgot
+  },
+  {
+    path:'/:catchAll(.*)',
+    redirect:'/',
   }
 
 ]
