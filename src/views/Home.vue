@@ -2,12 +2,15 @@
   <div class="home_page">
   <div class="jumbotron text-left"> 
   <h1> Welcome to Homepage </h1>
-  <h2 v-if="user">Hi, {{user.displayName}}, please enter data</h2> 
-<h2 v-if="user"> <user-upload-data/> </h2>
-    
-  <p>Input your expermntal data</p> 
+  
     
 </div>  
+
+  <h2 v-if="user">Hi, {{user.displayName}}, please enter data</h2> 
+  <h2 v-if="user"> <user-upload-data/> </h2> 
+   
+
+
   <div class="jumbotron2 text-center">
   <h1>Saerch keywords </h1> 
   <p>Please select one keyword to search</p> 
