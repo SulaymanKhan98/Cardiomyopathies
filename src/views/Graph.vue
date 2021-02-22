@@ -1,27 +1,46 @@
 <template>
   <div class="graph">
     <div class="jumbotron text-left">
-  <h1>About Cardiomyopathy </h1> 
-  <br>
-  <p>This page is for graphs </p> 
+  <h1> Uploads </h1>
+  <div v-if="user"> 
+    <UploadList /> 
+
   </div>
+
   </div>
+
+   </div>
+
 </template>
-
-
-
-
 <script>
 // @ is an alias to /src
+import {ref} from "vue";
+import {firebaseAuthentication } from "@/firebase/database";
+import UploadList from '../components/UploadList'
 export default {
-  name: 'graph',
+  name: 'Home',
   components: {
-    
+    UploadList
+  },
+
+  setup(){
+
+    const user = ref(firebaseAuthentication.currentUser);
+   
+
+  
+    firebaseAuthentication.onAuthStateChanged(user => {
+      user.value = user;
+    });
+
+
+    return {user};
   }
+
+
 }
+
 </script>
-
-
 
 
 

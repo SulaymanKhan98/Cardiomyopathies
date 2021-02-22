@@ -2,8 +2,8 @@
   <div class="home_page">
   <div class="jumbotron text-left"> 
   <h1> Welcome to Homepage </h1>
-  <h2 v-if="user">Hi, {{user.displayName}}</h2> 
-
+  <h2 v-if="user">Hi, {{user.displayName}}, please enter data</h2> 
+<h2 v-if="user"> <user-upload-data/> </h2>
     
   <p>Input your expermntal data</p> 
     
@@ -27,14 +27,17 @@
 <script>
 // @ is an alias to /src
 import {ref} from "vue";
-import { firebaseFireStore, firebaseAuthentication } from "@/firebase/database";
+import {firebaseAuthentication } from "@/firebase/database";
+import UserUploadData from '../components/UserUploadData'
+
+
 
 
 
 export default {
   name: 'Home',
   components: {
-    
+    UserUploadData
   },
 
   setup(){
@@ -42,13 +45,7 @@ export default {
     const user = ref(firebaseAuthentication.currentUser);
    
 
-    firebaseFireStore
-    .collection("users")
-    .doc("jlPv0nW8LxObHkzg7Gug")
-    .get()
-    .then((snapshot) => {
-      console.log(snapshot.data().name);
-    });
+   
     
   
     firebaseAuthentication.onAuthStateChanged(user => {
