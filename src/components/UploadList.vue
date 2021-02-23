@@ -21,12 +21,26 @@
 // @ is an alias to /src
 import GraphCreator from "../components/GraphCreator";
 import emailjs from 'emailjs-com';
+import {ref} from "vue";
+import {firebaseAuthentication } from "@/firebase/database";
 
 import {
   getAllSubmissions,
   deleteUserSubmission,
 } from "../firebase/database.js";
 export default {
+
+  setup(){
+
+    const user = ref(firebaseAuthentication.currentUser.email);
+
+
+
+    return {user}
+  },
+
+  
+
   data() {
     return {
       userSubmissions: [],
@@ -47,9 +61,10 @@ export default {
       this.load = true;
     },
     deleteSelected(e, b) {
+          console.log(this.user);
       if(confirm("Are you sure you want to delete? This cannot be undone!")== true){
         var templateParams = {
-            email: "17073426@stu.mmu.ac.uk"
+            email: this.user
             };
         emailjs.send("service_cswgxab","template_dbwr4bk",templateParams,"user_TfsemkgXGUUnBYOXERVQC");
         

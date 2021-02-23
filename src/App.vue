@@ -22,8 +22,8 @@
         <li><router-link to="/about">ABOUT</router-link></li>
         <li><router-link to="/graph">GRAPH</router-link></li>
         <li><router-link to="/contact">CONTACT</router-link></li>
-        <li><router-link to="/login" v-if="User === false">Login/Register</router-link></li> 
-        <li> <a class='click' @click="logout" v-if="currentUser = true">Logout</a></li>
+        <li><router-link to="/login">Login/Register</router-link></li> 
+        <li> <a class='click' @click="logout">Logout</a></li>
         
       </ul>
     </div>
