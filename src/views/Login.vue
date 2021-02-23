@@ -1,6 +1,6 @@
 <template>
-  <div v-if="!user" class="login">
-    <div  class="jumbotron text-center">
+  <div class="login">
+    <div class="jumbotron text-center">
   <h1>Login</h1> 
   </div>
   <div class="text-center">
