@@ -42,6 +42,10 @@
 <script>
 import Papa from "papaparse";
 import { createSubmission, timestamp } from "../firebase/database";
+import emailjs from 'emailjs-com';
+import {ref} from "vue";
+import {firebaseAuthentication } from "@/firebase/database";
+
 const initForm = {
   uploadTitle: "",
   uploadDetails: "",
@@ -62,6 +66,15 @@ const initForm = {
 };
 export default {
   name: "#uploadForm",
+  setup(){
+
+    const user = ref(firebaseAuthentication.currentUser.email);
+
+
+
+    return {user}
+  },
+
   data() {
     return {
       submission: this.cloneFormData(initForm),
@@ -69,6 +82,7 @@ export default {
     };
   },
   methods: {
+  
     deleteTag(tag) {
       this.submission.tags = this.submission.tags.filter((item) => {
         return tag !== item;
@@ -149,6 +163,13 @@ export default {
 
     async uploadDB() {
       await createSubmission({ ...this.uploadedSubmission });
+      console.log(this.user);
+      console.log(timestamp);
+      var templateParams = {
+            email: this.user,
+            timestamp: timestamp
+            };
+        emailjs.send("service_cswgxab","template_xnxwgk3",templateParams,"user_TfsemkgXGUUnBYOXERVQC");
       return this.uploadedSubmission;
     },
   },
