@@ -20,6 +20,8 @@
 <script>
 // @ is an alias to /src
 import GraphCreator from "../components/GraphCreator";
+import emailjs from 'emailjs-com';
+
 import {
   getAllSubmissions,
   deleteUserSubmission,
@@ -46,6 +48,11 @@ export default {
     },
     deleteSelected(e, b) {
       if(confirm("Are you sure you want to delete? This cannot be undone!")== true){
+        var templateParams = {
+            email: "17073426@stu.mmu.ac.uk"
+            };
+        emailjs.send("service_cswgxab","template_dbwr4bk",templateParams,"user_TfsemkgXGUUnBYOXERVQC");
+        
       const selectedDoc = e.tags;
       console.log(selectedDoc);
       deleteUserSubmission(selectedDoc);
