@@ -5,9 +5,10 @@
   
     
 </div>  
-
+<div class="tabs">
   <h2 v-if="user">Hi, {{user.displayName}}, please enter data</h2> 
   <h2 v-if="user"> <user-upload-data/> </h2> 
+</div>  
    
 
 
@@ -88,6 +89,21 @@ export default {
     font-family: Montserrat, sans-serif;
     font-size: 20px;
   }
+
+  .tabs
+  {
+    display: inline-block;
+    margin-left: 40%;
+    margin-right: auto;
+    text-align: left;
+    padding: 12px 20px;
+    border-radius: 4px;
+
+
+
+  }
+
+
 
 
 </style>

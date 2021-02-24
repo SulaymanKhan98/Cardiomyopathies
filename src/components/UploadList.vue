@@ -1,5 +1,4 @@
 <template>
-  <div class="jumbotron text-left">
     <table v-if="load" style="width:100%">
       <tr>
         <th>Title</th>
@@ -12,10 +11,9 @@
         <td>{{ subs.uploadDetails }}</td>
         <td>{{ subs.tags }}</td>
         <td><graph-creator v-bind:userSubmissions="subs" /></td>
-        <td><button @click="deleteSelected(subs, index)">Delete</button></td>
+        <td><button  class="btn btn-success" @click="deleteSelected(subs, index)">Delete</button></td>
       </tr>
     </table>
-  </div>
 </template>
 <script>
 // @ is an alias to /src
@@ -86,10 +84,5 @@ export default {
 </script>
 
 <style scoped>
-.jumbotron {
-  background-color: #5f75f1;
-  color: #fff;
-  padding: 100px 25px;
-  font-family: Montserrat, sans-serif;
-}
+
 </style>

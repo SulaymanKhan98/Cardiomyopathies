@@ -4,6 +4,7 @@
       <div>
         Title:
         <input
+          class="form-control input-sm"
           type="text"
           v-model="submission.uploadTitle"
           name="uploadTitle"
@@ -13,6 +14,7 @@
       <div>
         Details:
         <input
+          class="form-control input-sm"
           type="textarea"
           v-model="submission.uploadDetails"
           name="uploadDetails"
@@ -29,12 +31,13 @@
         />
       </div>
       <div>
-        <input type="text" v-model="submission.tempTag" @keydown="addTag" />
+        Tags:
+        <input type="text"  class="form-control input-sm" v-model="submission.tempTag" @keydown="addTag" />
       </div>
       <div v-for="tag in submission.tags" :key="tag" class="pill">
         <span @click="deleteTag(tag)">{{ tag }}</span>
       </div>
-      <input type="submit" value="Add" />
+      <input type="submit" class="btn btn-success" value="Add" />
     </form>
   </div>
 </template>
@@ -191,4 +194,5 @@ export default {
 .pill:hover {
   background: #ff6666;
 }
+
 </style>
