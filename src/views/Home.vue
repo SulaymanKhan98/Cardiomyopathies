@@ -15,14 +15,19 @@
   <div class="jumbotron2 text-center">
   <h1>Saerch keywords </h1> 
   <p>Please select one keyword to search</p> 
-  <div class= "drop">
-  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-  <option selected>Open this select menu</option>
-  <option value="1">Dilated cardiomyopathy</option>
-  <option value="2">Hypertrophic cardiomyopathy</option>
-  <option value="3">Restrictive cardiomyopathy</option>
-</select>
-  </div>
+   <div class="input-container" >
+      <select v-model="selected">
+        <option disabled value="">Please select one </option>
+        <option>TNNT</option>
+        <option>MYH</option>
+        <option>MYBPC3</option>
+        <option>TPM1</option>
+      </select>
+      <span>Selected: {{selected}}</span>
+      <button class="btn btn-success" @click="populateDiseaseList()">SEARCH </button>
+    </div>
+      <SearchList v-if="somethingEntered" v-bind:results="results"/>
+  
 
 </div>
   </div>
@@ -32,8 +37,8 @@
 // @ is an alias to /src
 import {ref} from "vue";
 import {firebaseAuthentication } from "@/firebase/database";
-import UserUploadData from '../components/UserUploadData'
-
+import UserUploadData from '../components/UserUploadData';
+import SearchList from '../components/SearchList';
 
 
 
@@ -41,7 +46,8 @@ import UserUploadData from '../components/UserUploadData'
 export default {
   name: 'Home',
   components: {
-    UserUploadData
+    UserUploadData,
+    SearchList
   },
 
   setup(){
@@ -58,6 +64,47 @@ export default {
 
 
     return {user};
+  },
+  data() {
+    return{
+      results: '',
+      selected: '',
+      somethingEntered: false,
+      geneType: '',
+      diseaseList: '',
+      disease_base_url: "https://hpo.jax.org/api/hpo/disease",
+      error: ''
+    }
+  },
+  methods: {
+   async populateDiseaseList() {
+      if (this.selected === 'TNNT') {
+      this.geneType = 'OMIM:601494';
+      }
+      else if (this.selected === 'MYH') {
+      this.geneType = 'OMIM:192600';
+      }
+      else if (this.selected === 'MYBPC3'){
+       this.geneType = 'OMIM:115197';
+      }
+      else{
+        this.geneType ='OMIM:115196'
+      }
+      const disease_list_url = this.disease_base_url + "/" +this.geneType
+      try {
+        let disease_data = await fetch(disease_list_url);
+        if (!disease_data.ok) {
+          throw Error("unable kiddo");
+        }
+        this.diseaseList = await disease_data.json();
+        this.results = this.diseaseList
+        console.log(this.results)
+      this.somethingEntered=true
+        console.log("it didnt catch");
+      } catch (error) {
+        console.log("it caught");
+      }
+    }
   }
 
 
