@@ -3,16 +3,14 @@ import "firebase/auth";
 import "firebase/firestore";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAGDp5Pf4L0JdY2BywfxDI88Abwy09i4G4",
-  authDomain: "adv-web-assignment.firebaseapp.com",
-  databaseURL:
-    "https://adv-web-assignment-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "adv-web-assignment",
-  storageBucket: "adv-web-assignment.appspot.com",
-  messagingSenderId: "831433916933",
-  appId: "1:831433916933:web:c5d9e0caa636c03ebb126c",
-  measurementId: "G-J43RTZD1CW",
+var firebaseConfig = {
+  apiKey: "AIzaSyDQ4vfovtx4c0DPhYCgdxFP6_SW3fQrWCQ",
+  authDomain: "adv-web-assignment-9d7f8.firebaseapp.com",
+  projectId: "adv-web-assignment-9d7f8",
+  storageBucket: "adv-web-assignment-9d7f8.appspot.com",
+  messagingSenderId: "442633321590",
+  appId: "1:442633321590:web:b1d28fc492e989eb497357",
+  measurementId: "G-6NTLFCBJJ9"
 };
 // Initalize Firebase
 firebase.initializeApp(firebaseConfig);
