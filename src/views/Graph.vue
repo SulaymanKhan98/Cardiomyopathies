@@ -5,12 +5,12 @@
   </div>
 
   
-
-  <div class="graph">
-      <div v-if="user"> 
-          <UploadList /> 
+  <div v-if="user">   
+      <div class="graph">   
+        <UploadList />  
       </div>
   </div>
+  
 </div>
 </template>
 <script>
