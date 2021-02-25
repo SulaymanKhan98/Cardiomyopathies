@@ -1,5 +1,5 @@
 <template>
-
+<div>
   <div class="jumbotron text-left">
     <h1> Uploads </h1>
   </div>
@@ -11,7 +11,7 @@
           <UploadList /> 
       </div>
   </div>
-
+</div>
 </template>
 <script>
 // @ is an alias to /src
@@ -54,7 +54,7 @@ export default {
   }
 
   .graph{
-    background-color:#121172;
+    background-color:#9bacf5;
     color: #fff;
     font-family: Montserrat, sans-serif;
     width: 90%;
@@ -64,6 +64,7 @@ export default {
     padding: 20px;
     width: 90%;
     border-style: solid;
-  border-color: black;
+  border-color: #121172;
   }
 </style>
+

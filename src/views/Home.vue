@@ -4,13 +4,15 @@
   <h1> Welcome to Homepage </h1>
   
     
-</div>  
+</div> 
+<div class="jumbotron4 text-left" >
 <div class="tabs">
   <h2 v-if="user">Hi, {{user.displayName}}, please enter data</h2> 
-  <h2 v-if="user"> <user-upload-data/> </h2> 
+  <h2 v-if="user"> <user-upload-data/> </h2>
+</div>
 </div>  
    
-
+<br>
 
   <div class="jumbotron2 text-center">
   <h1>Saerch keywords </h1> 
@@ -26,7 +28,9 @@
       <span>Selected: {{selected}}</span>
       <button class="btn btn-success" @click="populateDiseaseList()">SEARCH </button>
     </div>
-      <SearchList v-if="somethingEntered" v-bind:results="results"/>
+      <SearchList  v-if="results && internalResults && somethingEntered == true"
+      :results="results"
+      :internalResults="internalResults"/>
   
 
 </div>
@@ -36,7 +40,7 @@
 <script>
 // @ is an alias to /src
 import {ref} from "vue";
-import {firebaseAuthentication } from "@/firebase/database";
+import {firebaseAuthentication, firestoreQuery } from "@/firebase/database";
 import UserUploadData from '../components/UserUploadData';
 import SearchList from '../components/SearchList';
 
@@ -67,7 +71,8 @@ export default {
   },
   data() {
     return{
-      results: '',
+      results: undefined,
+      internalResults: undefined,
       selected: '',
       somethingEntered: false,
       geneType: '',
@@ -78,6 +83,7 @@ export default {
   },
   methods: {
    async populateDiseaseList() {
+     this.somethingEntered = false;
       if (this.selected === 'TNNT') {
       this.geneType = 'OMIM:601494';
       }
@@ -94,16 +100,22 @@ export default {
       try {
         let disease_data = await fetch(disease_list_url);
         if (!disease_data.ok) {
-          throw Error("unable kiddo");
+          throw Error("No results found");
         }
         this.diseaseList = await disease_data.json();
         this.results = this.diseaseList
-        console.log(this.results)
-      this.somethingEntered=true
+        this.internalResults = this.selected
+        this.checkInternal(this.internalResults);
+        
         console.log("it didnt catch");
       } catch (error) {
         console.log("it caught");
       }
+    },
+    async checkInternal(selected){
+      const queryResult = await firestoreQuery(selected);
+      this.internalResults = queryResult;
+      this.somethingEntered = true
     }
   }
 
@@ -119,18 +131,26 @@ export default {
     color: #fff;
     padding: 60px 25px;
     font-family: Montserrat, sans-serif;
+    font-size: 22px;
+  }
+
+    .jumbotron4 {
+    background-color: #e2ebfd;
+    color: #fff;
+    padding: 60px 25px;
+    font-family: Montserrat, sans-serif;
   }
 
     .jumbotron2 {
-    background-color: #121172;
-    color: #fff;
+    background-color: #e2ebfd;
+    color: black;
     padding: 100px 25px;
     font-family: Montserrat, sans-serif;
   }
 
   .drop
   {
-    background-color: #121172;
+    background-color: #ffffff;
     color: rgb(0, 0, 0);
     padding: 20px 25px;
     font-family: Montserrat, sans-serif;
@@ -140,17 +160,19 @@ export default {
   .tabs
   {
     display: inline-block;
-    margin-left: 40%;
+    margin-left: 30%;
     margin-right: auto;
     text-align: left;
     padding: 12px 20px;
     border-radius: 4px;
-
-
+    color: black;
 
   }
 
-
+.tabs-btn
+{
+  background-color: blue;
+}
 
 
 </style>

@@ -14,7 +14,6 @@ const firebaseConfig = {
   appId: "1:831433916933:web:c5d9e0caa636c03ebb126c",
   measurementId: "G-J43RTZD1CW",
 };
-
 // Initalize Firebase
 firebase.initializeApp(firebaseConfig);
 const firebaseAuthentication = firebase.auth();
@@ -32,6 +31,14 @@ export const createSubmission = (submission) => {
     .collection("submissions")
     .add(submission);
 };
+export const firestoreQuery = async (internalResults) => {
+  const query =  await firebaseFireStore
+    .collectionGroup("submissions")
+    .where("tags", "array-contains", internalResults).get();
+      return query.docs.map((doc)=>{
+        return doc.data();
+      });
+  };
 
 export const deleteUserSubmission = async (selectedDoc) => {
   userSubmissions.doc(firebaseAuthentication.currentUser.uid)
