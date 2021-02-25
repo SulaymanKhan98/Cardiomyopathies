@@ -20,8 +20,7 @@
         <!--link to each view through routing -->
         <div v-if="!user">
           <ul class="nav navbar-nav navbar-right">
-          <li><router-link to="/home">HOME</router-link></li>
-          <li><router-link to="/about">ABOUT</router-link></li>
+          <li><router-link to="/home">HOME</router-link></li>  
           <li><router-link to="/graph">GRAPH</router-link></li>
           <li><router-link to="/contact">HELP</router-link></li>
           <li class="collapse navbar-collapse nav navbar-nav navbar-right" id="hide myNavbar"><router-link to="/login">Login/Register</router-link></li>
@@ -30,7 +29,6 @@
       <div v-else>
         <ul class="nav navbar-nav navbar-right">
           <li><router-link to="/home">HOME</router-link></li>
-          <li><router-link to="/about">ABOUT</router-link></li>
           <li><router-link to="/graph">GRAPH</router-link></li>
           <li><router-link to="/contact">HELP</router-link></li> 
           <li> <a class='click'  @click="logout">Logout</a> </li>

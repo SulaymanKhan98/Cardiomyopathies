@@ -2,15 +2,18 @@
   <div class="home_page">
   <div class="jumbotron text-left"> 
   <h1> Welcome to Homepage </h1>
+  <p> Please Log in to enter data! Also, make sure you click on “Symptoms” to be able to view the symptoms of the keyword selected.  </p>
   
     
 </div> 
+<div v-if="user">   
 <div class="jumbotron4 text-left" >
 <div class="tabs">
   <h2 v-if="user">Hi, {{user.displayName}}, please enter data</h2> 
   <h2 v-if="user"> <user-upload-data/> </h2>
 </div>
 </div>  
+ </div>
    
 <br>
 

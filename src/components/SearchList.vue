@@ -5,7 +5,7 @@
      <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 <h2> External results</h2>
  <hr style="height:2px;border-width:0;color:gray;background-color:gray">
-    <h2 v-on:click="isHidden = !isHidden">Symptoms</h2>
+    <h2 style="cursor: pointer" v-on:click="isHidden = !isHidden">Symptoms</h2>
   </div>
   <div v-if="isHidden">
     <div v-for="item in results.catTermsMap" :key="item" class="#this">
