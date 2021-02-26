@@ -1,15 +1,18 @@
 <template>
   <div class="login">
     <div class="jumbotron text-center">
-  <h1>Login</h1> 
+     
+     <img src="@/assets/heart3.png" width="400" height="100" class="image"/>
+
   </div>
   <div class="text-center">
   <div class="container">
-      <div class="row" style="margin-top:20px">
+      <div class="row" style="margin-top:7px">
     <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
 		<form role="form" >
 			<fieldset>
-				<h2>Please Sign In</h2>
+       
+				<h2>Please Sign In or Register a new account</h2>
 				<hr class="colorgraph">
 				<div class="form-group">
                     <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" v-model="email">
@@ -25,7 +28,7 @@
 				<hr class="colorgraph">
 				<div class="row">
 					<div class="col-xs-6 col-sm-6 col-md-6">
-                        <el-button type="submit" @click="login" class="btn btn-lg btn-success btn-block">
+                        <el-button type="submit" style="background-color:navy;" @click="login" class="btn btn-lg btn-success btn-block">
                           Login
                         </el-button>
 					</div>
@@ -45,7 +48,11 @@
     </div>
 
   </div>
+
+  
+
   </div>
+  
 </template>
 
 
@@ -55,6 +62,7 @@
 import { ref } from "vue";
 import { firebaseAuthentication } from "@/firebase/database";
 import { useRouter } from "vue-router";
+
 
 
 export default {
@@ -105,10 +113,14 @@ export default {
 
 <style scoped>
   .jumbotron {
-    background-color: #5f75f1;
+    background-color: #ffffff;
     color: #fff;
-    padding: 50px 25px;
+    padding: 30px 25px;
     font-family: Montserrat, sans-serif;
+  }
+  .jumbotron-img
+  {
+    margin: 10rem;
   }
 
     .jumbotron3 {
@@ -132,6 +144,19 @@ export default {
   background: #c4e17f;
   border-radius: 5px;
   background-image: linear-gradient(to right,#6647d8 50%, #6647d8 62.5%, #4e29d4 62.5%, #4e29d4 75%,#669ae1 5%,#669ae1 15%,#669ae1 25%,#669ae1 35%,#669ae1 45%,#669ae1 55%,#669ae1 65%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+}
+
+/* Style the footer */
+footer {
+  background-color: #121172;
+  padding: 5px;
+  text-align: center;
+  color: white;
+  margin-top: 2rem;
+}
+
+.image{
+  margin-top: 3rem;
 }
 
 </style>

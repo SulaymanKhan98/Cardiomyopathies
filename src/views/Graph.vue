@@ -1,7 +1,8 @@
 <template>
 <div>
-  <div class="jumbotron text-left">
-    <h1> Uploads </h1>
+  <div class="jumbotron text-center">
+<img src="@/assets/heart3.png" width="400" height="100" class="image"/>
+    <h1> Uploads And Graphs</h1>
      <h2> Welcome to the Graph page</h2>
 
 <p>To view graphs, please make sure that you have uploaded a CSV file from home page attached with a title, description and tags. Once you have uploaded a file, graphs will appear on this page. </p>
@@ -75,5 +76,9 @@ export default {
     border-style: solid;
   border-color: #121172;
   }
+
+  .image{
+  margin-top: -3rem;
+}
 </style>
 
